@@ -1,6 +1,6 @@
 FROM python:3.9
 
-MAINTAINER Pradeep Bashyal
+LABEL MAINTAINER="Pradeep Bashyal"
 
 WORKDIR /app
 
