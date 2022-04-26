@@ -5,7 +5,7 @@ My Project Template
 How to use the template:
 
 1. Create a template by clicking on the "Use this template" button. Make sure to select all branches
-   This will create a new repository with the given name
+   This will create a new repository with the given name e.g. `urban-potato`
 2. Clone the repository locally
     ```shell
     git clone git@github.com:pbashyal-nmdp/urban-potato.git

@@ -1,11 +1,12 @@
-FROM python:3.9
+FROM python:3.10-slim-buster
 
 LABEL MAINTAINER="Pradeep Bashyal"
 
 WORKDIR /app
 
 COPY requirements.txt /app
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY requirements-deploy.txt /app
 RUN pip install --no-cache-dir -r requirements-deploy.txt

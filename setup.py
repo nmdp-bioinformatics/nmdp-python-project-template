@@ -43,7 +43,7 @@ with open("requirements-tests.txt") as requirements_file:
 setup(
     author="Pradeep Bashyal",
     author_email="pbashyal@nmdp.org",
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     classifiers=[
         "Development Status :: 1 - Pre-Alpha",
         "Intended Audience :: Developers",
@@ -51,6 +51,7 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     install_requires=requirements,
