@@ -41,11 +41,13 @@ with open("requirements-tests.txt") as requirements_file:
     test_requirements = requirements_file.read().split("\n")
 
 setup(
+    name="my_project_template",
+    version="0.0.1",
     author="Pradeep Bashyal",
     author_email="pbashyal@nmdp.org",
     python_requires=">=3.8",
     classifiers=[
-        "Development Status :: 1 - Pre-Alpha",
+        "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
         "Natural Language :: English",
@@ -57,13 +59,12 @@ setup(
     install_requires=requirements,
     license="LGPL 3.0",
     long_description=readme + "\n\n" + history,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords="my_project_template",
-    name="my_project_template",
     packages=find_packages(include=["my_project_template"]),
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/nmdp-bioinformatics/my_project_template",
-    version="0.0.1",
     zip_safe=False,
 )
