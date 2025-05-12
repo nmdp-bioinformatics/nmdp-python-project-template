@@ -88,7 +88,7 @@ docker: docker-build ## build a docker image and run the service
 	docker run --name my-project-template -p 8080:8080 my-project-template-service:0.0.1
 
 install: clean ## install the package to the active Python's site-packages
-	pip install --upgrade pip
+	pip install --upgrade pip setuptools
 	python setup.py install
 	pip install -r requirements.txt
 	pip install -r requirements-tests.txt
