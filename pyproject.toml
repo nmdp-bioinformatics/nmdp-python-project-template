@@ -46,15 +46,13 @@ dev = [
   "pre-commit>=4.2.0",
   "ruff>=0.11.11",
   "allure-behave==2.13.2",
-  "flake8==7.0.0",
-  "bump2version==1.0.1",
   "coverage==7.4.1",
 ]
 
 test = [
   "pytest==8.0.0",
   "behave==1.2.6",
-  "PyHamcrest==2.1.0",
+  "pyhamcrest==2.1.0",
 ]
 
 deploy=[

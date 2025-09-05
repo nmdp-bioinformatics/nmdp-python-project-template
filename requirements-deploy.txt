@@ -1,2 +1,0 @@
-connexion[swagger-ui]==2.14.2
-gunicorn==21.2.0
