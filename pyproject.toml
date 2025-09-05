@@ -7,7 +7,8 @@ name = "my_project_template"
 version = "0.0.1"
 description="Python Project Template. Standardized Python project structure for NMDP projects"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+]
 authors = [
   {name = "Pradeep Bashyal", email = "pbashyal@nmdp.org"},
   {name = "NMDP Person"},
@@ -60,7 +61,7 @@ test = [
 ]
 
 deploy=[
-  "connexion[swagger-ui]==3.2.0",
+  "connexion[swagger-ui,flask,uvicorn]==3.2.0",
   "gunicorn==23.0.0"
 ]
 
