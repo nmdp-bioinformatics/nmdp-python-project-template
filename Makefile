@@ -1,5 +1,6 @@
 PROJECT_NAME := $(shell basename `pwd`)
 PACKAGE_NAME := my_project_template
+VERSION := 0.0.1
 
 .PHONY: clean clean-test clean-pyc clean-build docs help test test-all
 .DEFAULT_GOAL := help
@@ -53,7 +54,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 	rm -fr allure_report
 
-lint: ## check style with flake8
+lint: ## check style with ruff
 	uv tool run ruff check
 
 behave: clean-test ## run the behave tests, generate and serve report
@@ -68,7 +69,7 @@ test: clean-test ## run all(BDD and unit) tests
 	uv run behave
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source my_project_template -m pytest
+	coverage run --source $(PACKAGE_NAME) -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
@@ -78,14 +79,18 @@ dist: clean ## builds source and wheel package
 	ls -l dist
 
 docker-build: ## build a docker image for the service
-	docker build -t my-project-template-service:0.0.1 .
+	docker build -t $(PACKAGE_NAME):$(VERSION) .
 
 docker: docker-build ## build a docker image and run the service
-	docker run --name my-project-template -p 8080:8080 my-project-template-service:0.0.1
+	docker run --name $(PACKAGE_NAME) -p 8080:8080 $(PACKAGE_NAME):$(VERSION)
 
-install: clean ## install the package to the active Python's site-packages
+sync: clean ## install the package to the active Python's site-packages
 	uv sync --all-groups
 	pre-commit install
+
+install: sync ## Sync pyproject.toml to .venv as well as install tools
+	pre-commit install
+	uv tool install bump-my-version
 
 venv: ## creates a Python3 virtualenv environment in venv
 	uv venv --prompt $(PROJECT_NAME)-venv
@@ -93,4 +98,4 @@ venv: ## creates a Python3 virtualenv environment in venv
 activate: ## activate a virtual environment. Run `make venv` before activating.
 	@echo "====================================================================="
 	@echo "To activate the new virtual environment, execute the following from your shell"
-	@echo "source venv/bin/activate"
+	@echo "source .venv/bin/activate"
