@@ -1,5 +1,6 @@
 PROJECT_NAME := $(shell basename `pwd`)
 PACKAGE_NAME := my_project_template
+VERSION := 0.0.1
 
 .PHONY: clean clean-test clean-pyc clean-build docs help test test-all
 .DEFAULT_GOAL := help
@@ -53,56 +54,48 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 	rm -fr allure_report
 
-lint: ## check style with flake8
-    # stop the build if there are Python syntax errors or undefined names \
-	  exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-	flake8 $(PACKAGE_NAME) tests --count --select=E9,F63,F7,F82 --show-source --statistics
-	flake8 $(PACKAGE_NAME) --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+lint: ## check style with ruff
+	uv tool run ruff check
 
 behave: clean-test ## run the behave tests, generate and serve report
-	- behave -f allure_behave.formatter:AllureFormatter -o allure_report
+	- uv run behave -f allure_behave.formatter:AllureFormatter -o allure_report
 	allure serve allure_report
 
 pytest: clean-test ## run tests quickly with the default Python
-	PYTHONPATH=. pytest
+	uv run pytest
 
 test: clean-test ## run all(BDD and unit) tests
-	PYTHONPATH=. pytest
-	behave
+	uv run pytest
+	uv run behave
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source my_project_template -m pytest
+	coverage run --source $(PACKAGE_NAME) -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	uv build
 	ls -l dist
 
 docker-build: ## build a docker image for the service
-	docker build -t my-project-template-service:0.0.1 .
+	docker build -t $(PACKAGE_NAME):$(VERSION) .
 
 docker: docker-build ## build a docker image and run the service
-	docker run --name my-project-template -p 8080:8080 my-project-template-service:0.0.1
+	docker run --name $(PACKAGE_NAME) -p 8080:8080 $(PACKAGE_NAME):$(VERSION)
 
-install: clean ## install the package to the active Python's site-packages
-	pip install --upgrade pip setuptools
-	python setup.py install
-	pip install -r requirements.txt
-	pip install -r requirements-tests.txt
-	pip install -r requirements-dev.txt
-	pip install -r requirements-deploy.txt
+sync: clean ## install the package to the active Python's site-packages
+	uv sync --all-groups
 	pre-commit install
 
+install: sync ## Sync pyproject.toml to .venv as well as install tools
+	pre-commit install
+	uv tool install bump-my-version
+
 venv: ## creates a Python3 virtualenv environment in venv
-	python3 -m venv venv --prompt $(PROJECT_NAME)-venv
-	@echo "====================================================================="
-	@echo "To activate the new virtual environment, execute the following from your shell"
-	@echo "source venv/bin/activate"
+	uv venv --prompt $(PROJECT_NAME)-venv
 
 activate: ## activate a virtual environment. Run `make venv` before activating.
 	@echo "====================================================================="
 	@echo "To activate the new virtual environment, execute the following from your shell"
-	@echo "source venv/bin/activate"
+	@echo "source .venv/bin/activate"
