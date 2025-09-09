@@ -1,3 +1,4 @@
+.git
 .github
 .eggs/
 build
@@ -6,9 +7,9 @@ dist
 *.egg-info
 tests
 venv
+.venv
 
 __pycache__
-*.pyc
 *.pyo
 *.pyd
 *.output

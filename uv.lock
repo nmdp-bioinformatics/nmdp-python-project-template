@@ -486,9 +486,9 @@ wheels = [
 ]
 
 [[package]]
-name = "nmdp-python-project-template"
+name = "my-project-template"
 version = "0.0.1"
-source = { virtual = "." }
+source = { editable = "." }
 
 [package.dev-dependencies]
 deploy = [
