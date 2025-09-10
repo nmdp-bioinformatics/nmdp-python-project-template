@@ -20,9 +20,8 @@ setup_hooks = []
 pre_commit_hooks = []
 post_commit_hooks = []
 
-
 [[tool.bumpversion.files]]
-filename = "my_project_template/__init__.py"
+filename = "src/my_project_template/__init__.py"
 search =  "__version__ = \"{current_version}\""
 replace = "__version__ = \"{new_version}\""
 
@@ -35,3 +34,8 @@ replace = "version = \"{new_version}\""
 filename = "api-spec.yaml"
 search =  "version: {current_version}"
 replace = "version: {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "Makefile"
+search =  "VERSION := {current_version}"
+replace = "VERSION := {new_version}"

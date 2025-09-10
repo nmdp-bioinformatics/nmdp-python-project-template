@@ -58,7 +58,7 @@ lint: ## check style with ruff
 	uv tool run ruff check
 
 behave: clean-test ## run the behave tests, generate and serve report
-	- uv run behave -f allure_behave.formatter:AllureFormatter -o allure_report
+	uv run behave -f allure_behave.formatter:AllureFormatter -o allure_report
 	allure serve allure_report
 
 pytest: clean-test ## run tests quickly with the default Python
