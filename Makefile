@@ -86,7 +86,6 @@ docker: docker-build ## build a docker image and run the service
 
 sync: clean ## install the package to the active Python's site-packages
 	uv sync --all-groups
-	pre-commit install
 
 install: sync ## Sync pyproject.toml to .venv as well as install tools
 	pre-commit install
