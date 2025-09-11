@@ -45,7 +45,6 @@ How to use the template:
 6. Install and sync all the project and development dependencies.
    ```shell
     make install
-    make sync
    ```
 7. The Gherkin Feature files, step files and pytest files go in `tests` directory:
     ```
