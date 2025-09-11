@@ -44,6 +44,6 @@ ENV PYTHONPATH="/app/.venv/lib/python3.13/site-packages/:"
 # Sync the project into a new environment, asserting the lockfile is up to date
 COPY pyproject.toml /app/
 COPY uv.lock /app/
-RUN /bin/uv sync --locked --group deploy
+RUN uv sync --no-build --no-install-project --locked --group deploy
 
-CMD [".venv/bin/gunicorn"  , "--bind", "0.0.0.0:8080", "--worker-tmp-dir", "/dev/shm", "app:app"]
+CMD ["/app/run-app.sh"]

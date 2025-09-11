@@ -4,7 +4,7 @@ My Project Template
 
 How to use the template:
 
-1. Create a template by clicking on the "Use this template" button. Make sure to select all branches
+1. Click on the top-right green "Use this template" button. Make sure to select all branches
    This will create a new repository with the given name e.g. `urban-potato`
 2. Clone the repository locally
     ```shell
@@ -14,14 +14,13 @@ How to use the template:
 3. Make a virtual environment and activate it, run `make venv`
    ```shell
     > make venv
-      python3 -m venv venv --prompt urban-potato-venv
-      =====================================================================
-    To activate the new virtual environment, execute the following from your shell
-    source venv/bin/activate
-   ```
+        Using CPython 3.13.7
+        Creating virtual environment at: .venv
+        Activate with: source .venv/bin/activate
+    ```
 4. Source the virtual environment
    ```shell
-   source venv/bin/activate
+   source .venv/bin/activate
    ```
 5. Development workflow is driven through `Makefile`. Use `make` to list show all targets.
    ```
@@ -30,21 +29,23 @@ How to use the template:
     clean-build          remove build artifacts
     clean-pyc            remove Python file artifacts
     clean-test           remove test and coverage artifacts
-    lint                 check style with flake8
+    lint                 check style with ruff
     behave               run the behave tests, generate and serve report
     pytest               run tests quickly with the default Python
     test                 run all(BDD and unit) tests
     coverage             check code coverage quickly with the default Python
     dist                 builds source and wheel package
     docker-build         build a docker image for the service
-    docker               build a docker image for the service
-    install              install the package to the active Python's site-packages
+    docker               build a docker image and run the service
+    sync                 install the package to the active Python's site-packages
+    install              Sync pyproject.toml to .venv as well as install tools
     venv                 creates a Python3 virtualenv environment in venv
     activate             activate a virtual environment. Run `make venv` before activating.
    ```
-6. Install all the development dependencies. Will install packages from all `requirements-*.txt` files.
+6. Install and sync all the project and development dependencies.
    ```shell
     make install
+    make sync
    ```
 7. The Gherkin Feature files, step files and pytest files go in `tests` directory:
     ```
@@ -60,7 +61,7 @@ How to use the template:
     `-- unit
         `-- test_my_project_template.py
     ```
-8. Package Module files go in the `my_project_template` directory.
+8. Package Module files go in the `src/my_project_template` directory.
     ```
     my_project_template
     |-- __init__.py
@@ -72,6 +73,6 @@ How to use the template:
     `-- my_project_template.py
     ```
 9. Run all tests with `make test` or different tests with `make behave` or `make pytest`. `make behave` will generate report files and open the browser to the report.
-10. Use `python app.py` to run the Flask service app in debug mode. Service will be available at http://localhost:8080/
+10. Use `uv run app.py` to run the Flask service app in debug mode. Service will be available at http://localhost:8080/
 11. Use `make docker-build` to build a docker image using the current `Dockerfile`.
 12. `make docker` will build and run the docker image with the service.  Service will be available at http://localhost:8080/
