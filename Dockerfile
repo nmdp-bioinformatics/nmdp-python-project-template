@@ -36,7 +36,8 @@ RUN python3 -m pip install /tmp/my_project_template-0.0.1-py3-none-any.whl
 COPY app.py /app/
 COPY api.py /app/
 COPY api-spec.yaml /app/
-COPY run-app.sh /app/
+COPY docker-entrypoint-flask.sh /app/
+COPY gunicorn_config.py /app/
 
 # Put the uv built Python packages in the PATH
 ENV PYTHONPATH="/app/.venv/lib/python3.13/site-packages/:"
@@ -46,4 +47,4 @@ COPY pyproject.toml /app/
 COPY uv.lock /app/
 RUN uv sync --no-build --no-install-project --locked --group deploy
 
-CMD ["/app/run-app.sh"]
+CMD ["/app/docker-entrypoint-flask.sh"]
