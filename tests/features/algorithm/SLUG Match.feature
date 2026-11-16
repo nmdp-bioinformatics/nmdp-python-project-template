@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
 Feature: Match SLUG
 
   SLUGs are matched if each of the alleles of one SLUG are in the other SLUG.

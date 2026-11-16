@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
 FROM python:3.13-slim-trixie AS builder
 LABEL MAINTAINER="Pradeep Bashyal"
 

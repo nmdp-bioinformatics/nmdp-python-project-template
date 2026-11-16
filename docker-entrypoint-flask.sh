@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
 set -e
 
 # A positive integer generally in the 2-4 x $(NUM_CORES) range.
