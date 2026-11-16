@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
 PROJECT_NAME := $(shell basename `pwd`)
 PACKAGE_NAME := my_project_template
 VERSION := 0.0.1
@@ -55,7 +59,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr allure_report
 
 lint: ## check style with ruff
-	uv tool run ruff check
+	uv tool run ruff check --output-format=github .
 
 behave: clean-test ## run the behave tests, generate and serve report
 	uv run behave -f allure_behave.formatter:AllureFormatter -o allure_report

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+
+SPDX-License-Identifier: LGPL-3.0-or-later
+-->
+
 # Contributing
 
 Contributions are welcome, and they are greatly appreciated! Every

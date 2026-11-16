@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
+
+SPDX-License-Identifier: LGPL-3.0-or-later
+-->
+
 My Project Template
 ===================
 
@@ -75,3 +81,4 @@ How to use the template:
 10. Use `uv run app.py` to run the Flask service app in debug mode. Service will be available at http://localhost:8080/
 11. Use `make docker-build` to build a docker image using the current `Dockerfile`.
 12. `make docker` will build and run the docker image with the service.  Service will be available at http://localhost:8080/
+13. To add a SPDX license header to a new file, run the `reuse` command. <br/> ```$ reuse annotate --copyright="(NMDP) National Marrow Donor Program. All Rights Reserved." --license="LGPL-3.0-or-later" <filename> ```

@@ -1,26 +1,6 @@
-# -*- coding: utf-8 -*-
-
+# SPDX-FileCopyrightText: 2026 (NMDP) National Marrow Donor Program. All Rights Reserved.
 #
-#    my_project_template My Project Template.
-#    Copyright (c) 2021 Be The Match operated by National Marrow Donor Program. All Rights Reserved.
-#
-#    This library is free software; you can redistribute it and/or modify it
-#    under the terms of the GNU Lesser General Public License as published
-#    by the Free Software Foundation; either version 3 of the License, or (at
-#    your option) any later version.
-#
-#    This library is distributed in the hope that it will be useful, but WITHOUT
-#    ANY WARRANTY; with out even the implied warranty of MERCHANTABILITY or
-#    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
-#    License for more details.
-#
-#    You should have received a copy of the GNU Lesser General Public License
-#    along with this library;  if not, write to the Free Software Foundation,
-#    Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA.
-#
-#    > http://www.fsf.org/licensing/licenses/lgpl.html
-#    > http://www.opensource.org/licenses/lgpl-license.php
-#
+# SPDX-License-Identifier: LGPL-3.0-or-later
 
 
 """Tests for `my_project_template` package."""
@@ -51,7 +31,7 @@ def test_slug_match_identical_slugs():
     allele2 = Allele("HLA-A", "HLA-A*02:01")
     slug1 = SLUG(allele1, allele2)
     slug2 = SLUG(allele1, allele2)
-    
+
     assert slug_match(slug1, slug2) is True
 
 
@@ -60,8 +40,8 @@ def test_slug_match_different_slugs():
     allele1 = Allele("HLA-A", "HLA-A*01:01")
     allele2 = Allele("HLA-A", "HLA-A*02:01")
     allele3 = Allele("HLA-A", "HLA-A*03:01")
-    
+
     slug1 = SLUG(allele1, allele2)
     slug2 = SLUG(allele1, allele3)
-    
+
     assert slug_match(slug1, slug2) is False
